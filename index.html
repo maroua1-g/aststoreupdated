@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ASTStore</title>
+  <script src="https://www.paypal.com/sdk/js?client-id=sb"></script>
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="ast.css" />
+  
+
+</head>
+
+<body>
+  <header class="hero-section">
+    <img src="AST.jpg" alt="Hero" class="hero-image" />
+    <nav>
+      <div class="logo">ASTStore</div>
+      <ul class="nav-links">
+        <li><button onclick="toggleDropdown()">☰ Categories</button></li>
+       <!--<li><button onclick="openLogin()">👤 Login</button></li>-->
+        <li><button onclick="openCart()">🛒 Cart</button></li>
+<li><button onclick="openContact()">📩 Contact</button></li>
+
+      </ul>
+    </nav>
+    <div class="hero-content">
+  <h1 style="font-size: 3em; color:#f7d6e1 ;">ASTStore </h1>
+  <p style="font-size: 1.3em; color: #f7d6e1;">Dress to Unlock Innovation</p>
+  <button class="shop-now" onclick="scrollToSection('beauty')">shop now </button>
+</div>
+
+    <!-- 🔐 Login Modal -->
+<div id="login-modal" style="display: none; position: fixed; top: 0; left: 0; 
+  width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); 
+  justify-content: center; align-items: center; z-index: 999;">
+  
+  <div style="background: white; padding: 20px; border-radius: 10px; 
+    width: 300px; text-align: center;">
+    
+    <h2>Login</h2>
+    <input type="text" placeholder="Email" style="width: 90%; margin: 10px 0; padding: 8px;" />
+    <input type="password" placeholder="Password" style="width: 90%; margin-bottom: 10px; padding: 8px;" />
+    <button onclick="closeLogin()" style="padding: 10px 20px;">Submit</button>
+  </div>
+</div>
+
+
+  </header>
+
+  
+
+
+ 
+  <div id="category-panel" class="dropdown hidden">
+    <button onclick="showPanel('man')">Shop Man</button>
+    <button onclick="showPanel('tech')">Shop Tech</button>
+    <button onclick="scrollToSection('footer')">🎥 Media</button>
+  </div>
+  <div id="man-options" class="sub-panel hidden">
+    <button onclick="scrollToSection('beauty')">Beauty</button>
+    <button onclick="scrollToSection('home')">Home</button>
+    <button onclick="scrollToSection('ast')">AST Clothes</button>
+  </div>
+  <div id="tech-options" class="sub-panel hidden">
+    <button onclick="scrollToSection('banners')">Banners</button>
+    <button onclick="scrollToSection('frames')">Robot Frames</button>
+    <button onclick="scrollToSection('others')">Others</button>
+  </div>
+
+  <main>
+   
+
+
+
+
+    <!-- REPEATABLE CARD LAYOUT FOR ALL CATEGORIES -->
+    <!-- Each card now includes: title, description, price -->
+    <section id="beauty" class="product-gallery">
+      <h2>Beauty Products</h2>
+      <div class="product-grid">
+        <div class="product-card"><img id="beauty-img1"><div class="card-info"><h3 id="beauty-title1"></h3><p id="beauty-desc1"></p><p id="beauty-price1" class="price-tag"></p></div></div>
+        <div class="product-card"><img id="beauty-img2"><div class="card-info"><h3 id="beauty-title2"></h3><p id="beauty-desc2"></p><p id="beauty-price2" class="price-tag"></p></div></div>
+        <div class="product-card"><img id="beauty-img3"><div class="card-info"><h3 id="beauty-title3"></h3><p id="beauty-desc3"></p><p id="beauty-price3" class="price-tag"></p></div></div>
+      </div>
+    </section>
+
+    <section id="home" class="product-gallery">
+      <h2>Home Products</h2>
+      <div class="product-grid">
+        <div class="product-card"><img id="home-img1"><div class="card-info"><h3 id="home-title1"></h3><p id="home-desc1"></p><p id="home-price1" class="price-tag"></p></div></div>
+        <div class="product-card"><img id="home-img2"><div class="card-info"><h3 id="home-title2"></h3><p id="home-desc2"></p><p id="home-price2" class="price-tag"></p></div></div>
+        <div class="product-card"><img id="home-img3"><div class="card-info"><h3 id="home-title3"></h3><p id="home-desc3"></p><p id="home-price3" class="price-tag"></p></div></div>
+      </div>
+    </section>
+
+    <section id="ast" class="product-gallery">
+      <h2>AST Clothes</h2>
+      <div class="product-grid">
+        <div class="product-card"><img id="ast-img1"><div class="card-info"><h3 id="ast-title1"></h3><p id="ast-desc1"></p><p id="ast-price1" class="price-tag"></p></div></div>
+        <div class="product-card"><img id="ast-img2"><div class="card-info"><h3 id="ast-title2"></h3><p id="ast-desc2"></p><p id="ast-price2" class="price-tag"></p></div></div>
+        <div class="product-card"><img id="ast-img3"><div class="card-info"><h3 id="ast-title3"></h3><p id="ast-desc3"></p><p id="ast-price3" class="price-tag"></p></div></div>
+      </div>
+    </section>
+
+<section id="banners" class="product-gallery">
+      <h2>Banners</h2>
+      <div class="product-grid">
+        <div class="product-card"><img id="banners-img1"><div class="card-info"><h3 id="banners-title1"></h3><p id="banners-desc1"></p><p id="banners-price1" class="price-tag"></p></div></div>
+        <div class="product-card"><img id="banners-img2"><div class="card-info"><h3 id="banners-title2"></h3><p id="banners-desc2"></p><p id="banners-price2" class="price-tag"></p></div></div>
+        <div class="product-card"><img id="banners-img3"><div class="card-info"><h3 id="banners-title3"></h3><p id="banners-desc3"></p><p id="banners-price3" class="price-tag"></p></div></div>
+      </div>
+    </section>
+
+    <section id="frames" class="product-gallery">
+      <h2>Robot Frames</h2>
+      <div class="product-grid">
+        <div class="product-card"><img id="frames-img1"><div class="card-info"><h3 id="frames-title1"></h3><p id="frames-desc1"></p><p id="frames-price1" class="price-tag"></p></div></div>
+        <div class="product-card"><img id="frames-img2"><div class="card-info"><h3 id="frames-title2"></h3><p id="frames-desc2"></p><p id="frames-price2" class="price-tag"></p></div></div>
+        <div class="product-card"><img id="frames-img3"><div class="card-info"><h3 id="frames-title3"></h3><p id="frames-desc3"></p><p id="frames-price3" class="price-tag"></p></div></div>
+      </div>
+    </section>
+
+    <section id="others" class="product-gallery">
+      <h2>Others</h2>
+      <div class="product-grid">
+        <div class="product-card"><img id="others-img1"><div class="card-info"><h3 id="others-title1"></h3><p id="others-desc1"></p><p id="others-price1" class="price-tag"></p></div></div>
+        <div class="product-card"><img id="others-img2"><div class="card-info"><h3 id="others-title2"></h3><p id="others-desc2"></p><p id="others-price2" class="price-tag"></p></div></div>
+        <div class="product-card"><img id="others-img3"><div class="card-info"><h3 id="others-title3"></h3><p id="others-desc3"></p><p id="others-price3" class="price-tag"></p></div></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Enhanced Footer -->
+
+<footer>
+  <!-- Instagram -->
+
+
+  <footer>
+  <div class="footer-wrapper">
+    <div class="footer-section">
+      <h4>ASTStore</h4>
+      <p>Designed by Maroua<br>Curated essentials & soft style</p>
+    </div>
+
+    <div class="footer-section">
+      <h4>Explore</h4>
+      <div class="footer-links">
+        <a href="#beauty">Beauty</a>
+        <a href="#home">Home</a>
+        <a href="#ast">Clothes</a>
+      </div>
+    </div>
+
+    <div class="footer-section footer-social">
+      <h4>Follow Us</h4>
+      <a href="https://www.bing.com/ck/a?!&&p=6b03979189b9cf2696e67fd1d56755497019ecb398cee891bd7d69e4f7760c7aJmltdHM9MTc1Mjk2OTYwMA&ptn=3&ver=2&hsh=4&fclid=38e0692b-8729-6376-0ac2-7a99865e62b1&psq=ast_.club+instagram+&u=a1aHR0cHM6Ly93d3cuaW5zdGFncmFtLmNvbS9hc3RfLmNsdWIv&ntb=1"><img src="insta.png" alt="Instagram"></a>
+      <a href="#"><img src="face.png" alt="Facebook"></a>
+     <a href="https://t.me/+2O-MgFoqZG84NTBk" target="_blank">
+  <img src="tele.png" alt="Telegram">
+</a>
+
+    </div>
+  </div>
+
+  <div class="footer-credit">
+    © 2025 ASTStore — Crafted with 💕 from Algeria
+  </div>
+</footer>
+<!-- 🛒 Cart Modal -->
+<!-- 🛒 Cart Modal -->
+<div id="cart-modal" class="modal hidden">
+  <div class="modal-content">
+    <!-- ❌ Close Button in corner -->
+    <span class="close-button" onclick="closeCart()">&times;</span>
+
+    <h2>Your Cart</h2>
+    <div id="cart-items"></div>
+    <p id="cart-total">Total: 0 da</p>
+
+    <!-- 💳 Checkout -->
+    <button onclick="checkout()">Proceed to Checkout</button>
+
+    <!-- 🚪 Exit Cart Button -->
+    <button onclick="closeCart()">Exit Cart</button>
+  </div>
+</div>
+
+
+<!-- ✅ Checkout Modal -->
+<!-- ✅ Checkout Modal -->
+<div id="checkout-modal" class="modal hidden">
+  <div class="modal-content">
+    <h2>Finalize Your Order</h2>
+
+    <!-- Rendered cart items -->
+    <div id="checkout-items"></div>
+    <p id="checkout-total">Total: 0 da</p>
+
+    <!-- Your checkout form -->
+   <form action="https://formspree.io/f/xnnzzjnn" method="POST" id="checkout-form">
+  <input type="email" name="email" id="checkout-email" placeholder="Email Address" required />
+  <input type="text" name="name" id="checkout-name" placeholder="Name" required />
+  <input type="text" name="address" id="checkout-address" placeholder="Address" required />
+  <input type="tel" name="phone" id="checkout-phone" placeholder="Phone Number" required />
+
+  <!-- Hidden inputs get injected here -->
+  <div id="form-cart-data"></div>
+
+  <!-- 🛍️ Checkout Actions -->
+  <div class="checkout-buttons">
+    <button type="button" onclick="confirmOrder()">Place Order</button>
+    <button type="button" onclick="cancelOrder()">Cancel Order</button>
+  </div>
+</form>
+
+    
+
+ 
+
+
+
+<!-- 🎉 Confirmation Message -->
+<div id="confirmation-modal" class="modal hidden">
+  <div class="modal-content">
+    <h2>Thank You!</h2>
+    <p>Your order has been received 💝</p>
+    <button onclick="closeConfirmation()">Close</button>
+  </div>
+</div>
+<!-- Load PayPal SDK -->
+<script src="https://www.paypal.com/sdk/js?client-id=sb"></script>
+<!-- Optional PayPal Button --> 
+ <div id="paypal-button-container" style="margin-top: 20px;"></div> 
+</div> 
+</div>
+<!-- 🧾 PayPal Button --> 
+ <div id="paypal-button-container" style="margin-top: 20px;"></div> 
+</div> 
+</div>
+<!-- 💌 Contact Modal -->
+<div id="contact-modal" class="modal hidden">
+  <div class="modal-content">
+    <h2>Contact Us</h2>
+    <form action="https://formspree.io/f/xnnzzjnn" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <textarea name="message" placeholder="Your Message" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+    <button onclick="closeContact()">Close</button>
+  </div>
+</div>
+
+
+<form action="https://formspree.io/f/xnnzzjnn" method="POST">
+  <label>Your email:
+    <input type="email" name="email" required>
+  </label>
+  <label>Your message:
+    <textarea name="message" required></textarea>
+  </label>
+  <!-- Add more fields below as needed -->
+  <button type="submit">Send</button>
+</form>
+<!-- Load your custom script -->
+<script src="ast.js"></script>
+</body>
+</html>
+</body>
+</html>
+
+
+
+
+
+
+
+
